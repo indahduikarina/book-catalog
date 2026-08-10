@@ -1,0 +1,123 @@
+<div class="detail-page">
+
+  <div class="detail-container">
+
+    <a
+      routerLink="/books"
+      class="back-button"
+    >
+      ← Kembali ke Books
+    </a>
+
+    @if (loading) {
+
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Memuat detail buku...</p>
+      </div>
+
+    } @else if (book) {
+
+      <div class="detail-card">
+
+        <div class="detail-image">
+
+          <img
+            [src]="book.thumbnail"
+            [alt]="book.title"
+          />
+
+        </div>
+
+        <div class="detail-info">
+
+          <span class="category">
+            {{ book.category }}
+          </span>
+
+          <h1>
+            {{ book.title }}
+          </h1>
+
+          <p class="description">
+            {{ book.description }}
+          </p>
+
+          <div class="info-grid">
+
+            <div class="info-box">
+
+              <span>Harga</span>
+
+              <strong class="price">
+                ${{ book.price }}
+              </strong>
+
+            </div>
+
+            <div class="info-box">
+
+              <span>Rating</span>
+
+              <strong>
+                ⭐ {{ book.rating }}
+              </strong>
+
+            </div>
+
+            <div class="info-box">
+
+              <span>Stok</span>
+
+              <strong>
+                {{ book.stock }}
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div class="discount">
+
+            Diskon hingga
+            {{ book.discountPercentage }}%
+
+          </div>
+
+          <a
+            routerLink="/books"
+            class="button"
+          >
+            Lihat Semua Buku
+          </a>
+
+        </div>
+
+      </div>
+
+    } @else {
+
+      <div class="not-found">
+
+        <h2>
+          Buku tidak ditemukan
+        </h2>
+
+        <p>
+          Data buku yang kamu cari tidak tersedia.
+        </p>
+
+        <a
+          routerLink="/books"
+          class="button"
+        >
+          Kembali ke Books
+        </a>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

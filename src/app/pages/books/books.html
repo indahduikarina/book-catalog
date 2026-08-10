@@ -1,0 +1,321 @@
+<div class="books-page">
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="books-hero">
+
+    <div class="hero-content">
+
+      <span class="hero-label">
+        BOOK COLLECTION
+      </span>
+
+      <h1>
+        Explore Our Books
+      </h1>
+
+      <p>
+        Temukan berbagai buku menarik dan informasi lengkap
+        dalam satu katalog.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================= -->
+
+  <main class="books-container">
+
+
+    <!-- =========================
+         LOADING
+    ========================= -->
+
+    @if (isLoading) {
+
+      <div class="loading-container">
+
+        <div class="loading-spinner"></div>
+
+        <h3>
+          Loading Books...
+        </h3>
+
+        <p>
+          Sedang mengambil data buku.
+        </p>
+
+      </div>
+
+    }
+
+
+    <!-- =========================
+         ERROR
+    ========================= -->
+
+    @if (!isLoading && hasError) {
+
+      <div class="error-container">
+
+        <div class="error-icon">
+          ⚠️
+        </div>
+
+        <h3>
+          Gagal Memuat Buku
+        </h3>
+
+        <p>
+          Terjadi masalah saat mengambil data buku.
+          Silakan coba lagi.
+        </p>
+
+        <button
+          type="button"
+          class="retry-button"
+          (click)="loadBooks()"
+        >
+          ↻ Coba Lagi
+        </button>
+
+      </div>
+
+    }
+
+
+    <!-- =========================
+         BOOK CONTENT
+    ========================= -->
+
+    @if (!isLoading && !hasError) {
+
+      <!-- SEARCH + CATEGORY -->
+
+      <div class="filter-bar">
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+          <span class="search-icon">
+            🔍
+          </span>
+
+          <input
+            type="text"
+            placeholder="Cari buku berdasarkan judul..."
+            [(ngModel)]="searchText"
+            (ngModelChange)="onSearchChange()"
+          />
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="category-box">
+
+          <span class="category-label">
+            Kategori
+          </span>
+
+          <select
+            [(ngModel)]="selectedCategory"
+            (ngModelChange)="onCategoryChange()"
+          >
+
+            <option value="all">
+              Semua Kategori
+            </option>
+
+            @for (
+              category of categories;
+              track category
+            ) {
+
+              <option [value]="category">
+                {{ category }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- SECTION HEADER -->
+
+      <div class="section-header">
+
+        <div>
+
+          <span class="section-label">
+            OUR COLLECTION
+          </span>
+
+          <h2>
+            Daftar Buku
+          </h2>
+
+        </div>
+
+        <span class="book-count">
+          {{ filteredBooks.length }} buku
+        </span>
+
+      </div>
+
+
+      <!-- BOOK GRID -->
+
+      @if (filteredBooks.length > 0) {
+
+        <div class="book-grid">
+
+          @for (
+            book of paginatedBooks;
+            track book.id
+          ) {
+
+            <a
+              class="book-card"
+              [routerLink]="['/books', book.id]"
+            >
+
+              <div class="book-image">
+
+                <img
+                  [src]="book.thumbnail"
+                  [alt]="book.title"
+                />
+
+              </div>
+
+
+              <div class="book-content">
+
+                <span class="book-category">
+                  {{ book.category }}
+                </span>
+
+                <h3>
+                  {{ book.title }}
+                </h3>
+
+                <p class="book-description">
+                  {{ book.description }}
+                </p>
+
+
+                <div class="book-bottom">
+
+                  <strong class="book-price">
+                    ${{ book.price }}
+                  </strong>
+
+                  <span class="book-rating">
+                    ⭐ {{ book.rating }}
+                  </span>
+
+                </div>
+
+              </div>
+
+            </a>
+
+          }
+
+        </div>
+
+
+        <!-- =========================
+             PAGINATION
+        ========================= -->
+
+        @if (totalPages > 1) {
+
+          <div class="pagination">
+
+            <button
+              type="button"
+              class="pagination-button"
+              [disabled]="currentPage === 1"
+              (click)="changePage(currentPage - 1)"
+            >
+              ←
+            </button>
+
+
+            @for (
+              page of pageNumbers;
+              track page
+            ) {
+
+              <button
+                type="button"
+                class="pagination-button"
+                [class.active]="currentPage === page"
+                (click)="changePage(page)"
+              >
+                {{ page }}
+              </button>
+
+            }
+
+
+            <button
+              type="button"
+              class="pagination-button"
+              [disabled]="currentPage === totalPages"
+              (click)="changePage(currentPage + 1)"
+            >
+              →
+            </button>
+
+          </div>
+
+        }
+
+      }
+
+
+      <!-- =========================
+           EMPTY SEARCH RESULT
+      ========================= -->
+
+      @if (filteredBooks.length === 0) {
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            📚
+          </div>
+
+          <h3>
+            Buku Tidak Ditemukan
+          </h3>
+
+          <p>
+            Coba ubah kata pencarian atau pilih
+            kategori lainnya.
+          </p>
+
+        </div>
+
+      }
+
+    }
+
+  </main>
+
+</div>

@@ -1,0 +1,45 @@
+<nav class="navbar">
+
+  <div class="navbar-container">
+
+    <!-- LOGO -->
+
+    <a
+      routerLink="/"
+      class="logo"
+    >
+      Book<span>Catalog</span>
+    </a>
+
+
+    <!-- MENU -->
+
+    <div class="nav-menu">
+
+      <!-- HOME -->
+
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+      >
+        Home
+      </a>
+
+
+      <!-- BOOKS -->
+
+      <a
+        routerLink="/books"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        Books
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>

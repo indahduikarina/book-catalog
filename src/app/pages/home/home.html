@@ -1,0 +1,160 @@
+<div class="home-page">
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <span class="hero-label">
+        WELCOME TO BOOK CATALOG
+      </span>
+
+      <h1>
+        Discover Your Next
+        <span>Favorite Book</span>
+      </h1>
+
+      <p>
+        Temukan berbagai koleksi buku menarik
+        dan jelajahi informasi buku favoritmu
+        dengan mudah.
+      </p>
+
+      <div class="hero-actions">
+
+        <a
+          routerLink="/books"
+          class="primary-button"
+        >
+          View All Books
+        </a>
+
+        <a
+          routerLink="/books"
+          class="secondary-button"
+        >
+          Explore Collection →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURED BOOKS -->
+  <section class="featured-section">
+
+    <div class="section-header">
+
+      <div>
+
+        <span class="section-label">
+          OUR COLLECTION
+        </span>
+
+        <h2>
+          Featured Books
+        </h2>
+
+        <p>
+          Beberapa buku pilihan yang tersedia
+          di dalam katalog kami.
+        </p>
+
+      </div>
+
+      <a
+        routerLink="/books"
+        class="view-all"
+      >
+        View All →
+      </a>
+
+    </div>
+
+
+    <!-- BOOK GRID -->
+    <div class="book-grid">
+
+      @for (
+        book of books.slice(0, 4);
+        track book.id
+      ) {
+
+        <a
+          class="book-card"
+          [routerLink]="['/books', book.id]"
+        >
+
+          <div class="image-container">
+
+            <img
+              [src]="book.thumbnail"
+              [alt]="book.title"
+            />
+
+          </div>
+
+
+          <div class="book-info">
+
+            <span class="category">
+              {{ book.category }}
+            </span>
+
+            <h3>
+              {{ book.title }}
+            </h3>
+
+            <p class="description">
+              {{ book.description }}
+            </p>
+
+
+            <div class="book-bottom">
+
+              <strong class="price">
+                ${{ book.price }}
+              </strong>
+
+              <span class="rating">
+                ⭐ {{ book.rating }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      }
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div>
+
+      <h3>
+        BookCatalog
+      </h3>
+
+      <p>
+        Temukan buku favoritmu dengan mudah.
+      </p>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 BookCatalog
+    </div>
+
+  </footer>
+
+</div>
