@@ -1,0 +1,288 @@
+<div class="cart-page">
+
+  <!-- HEADER -->
+  <section class="cart-header">
+    <div class="cart-container">
+
+      <span class="cart-label">
+        SHOPPING CART
+      </span>
+
+      <h1>
+        Keranjang Belanja
+      </h1>
+
+      <p>
+        Periksa kembali produk yang ingin kamu beli.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- CONTENT -->
+  <main class="cart-container cart-content">
+
+    <!-- EMPTY CART -->
+    @if (!loading && cartItems.length === 0) {
+
+      <div class="empty-cart">
+
+        <div class="empty-icon">
+          🛒
+        </div>
+
+        <h2>
+          Keranjang Masih Kosong
+        </h2>
+
+        <p>
+          Belum ada produk yang ditambahkan ke keranjang.
+        </p>
+
+        <a
+          routerLink="/books"
+          class="shop-button"
+        >
+          ← Mulai Belanja
+        </a>
+
+      </div>
+
+    }
+
+
+    <!-- CART -->
+    @if (!loading && cartItems.length > 0) {
+
+      <div class="cart-layout">
+
+        <!-- PRODUCT LIST -->
+        <section class="cart-products">
+
+          <div class="cart-section-header">
+
+            <div>
+              <span class="section-label">
+                YOUR ITEMS
+              </span>
+
+              <h2>
+                Produk di Keranjang
+              </h2>
+            </div>
+
+            <span class="item-count">
+              {{ totalItems }} item
+            </span>
+
+          </div>
+
+
+          @for (
+            item of cartItems;
+            track item.product.id
+          ) {
+
+            <article class="cart-item">
+
+              <!-- IMAGE -->
+              <div class="product-image">
+
+                <img
+                  [src]="item.product.thumbnail"
+                  [alt]="item.product.title"
+                />
+
+              </div>
+
+
+              <!-- PRODUCT INFO -->
+              <div class="product-info">
+
+                <span class="product-category">
+                  {{ item.product.category }}
+                </span>
+
+                <h3>
+                  {{ item.product.title }}
+                </h3>
+
+                <p>
+                  {{ item.product.description }}
+                </p>
+
+                <strong class="product-price">
+                  ${{ item.product.price }}
+                </strong>
+
+              </div>
+
+
+              <!-- QUANTITY -->
+              <div class="quantity-section">
+
+                <span>
+                  Quantity
+                </span>
+
+                <div class="quantity-control">
+
+                  <button
+                    type="button"
+                    (click)="decreaseQuantity(item.product.id)"
+                  >
+                    −
+                  </button>
+
+                  <strong>
+                    {{ item.quantity }}
+                  </strong>
+
+                  <button
+                    type="button"
+                    (click)="increaseQuantity(item.product.id)"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- SUBTOTAL -->
+              <div class="subtotal">
+
+                <span>
+                  Subtotal
+                </span>
+
+                <strong>
+                  ${{
+                    item.product.price *
+                    item.quantity
+                  }}
+                </strong>
+
+              </div>
+
+
+              <!-- REMOVE -->
+              <button
+                type="button"
+                class="remove-button"
+                (click)="removeFromCart(item.product.id)"
+                title="Hapus produk"
+              >
+                ×
+              </button>
+
+            </article>
+
+          }
+
+
+          <!-- CLEAR CART -->
+          <button
+            type="button"
+            class="clear-button"
+            (click)="clearCart()"
+          >
+            🗑 Kosongkan Keranjang
+          </button>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+        <aside class="cart-summary">
+
+          <span class="section-label">
+            ORDER SUMMARY
+          </span>
+
+          <h2>
+            Ringkasan Pesanan
+          </h2>
+
+
+          <div class="summary-row">
+
+            <span>
+              Total Item
+            </span>
+
+            <strong>
+              {{ totalItems }}
+            </strong>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span>
+              Subtotal
+            </span>
+
+            <strong>
+              ${{ totalPrice.toFixed(2) }}
+            </strong>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span>
+              Pengiriman
+            </span>
+
+            <strong>
+              Gratis
+            </strong>
+
+          </div>
+
+
+          <div class="summary-divider"></div>
+
+
+          <div class="summary-total">
+
+            <span>
+              Total
+            </span>
+
+            <strong>
+              ${{ totalPrice.toFixed(2) }}
+            </strong>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="checkout-button"
+          >
+            Lanjut ke Checkout →
+          </button>
+
+
+          <a
+            routerLink="/books"
+            class="continue-shopping"
+          >
+            ← Lanjut Belanja
+          </a>
+
+        </aside>
+
+      </div>
+
+    }
+
+  </main>
+
+</div>

@@ -121,7 +121,9 @@
 }
 
 
-/* SEARCH */
+/* =====================================
+   SEARCH
+===================================== */
 
 .search-box {
   flex: 1;
@@ -172,7 +174,9 @@
 }
 
 
-/* CATEGORY */
+/* =====================================
+   CATEGORY
+===================================== */
 
 .category-box {
   width: 240px;
@@ -223,7 +227,9 @@
 }
 
 
-/* FOCUS */
+/* =====================================
+   FILTER FOCUS
+===================================== */
 
 .filter-bar:focus-within {
   border-color: #6366f1;
@@ -288,7 +294,7 @@
 
 
 /* =====================================
-   CARD
+   BOOK CARD
 ===================================== */
 
 .book-card {
@@ -304,11 +310,7 @@
 
   border-radius: 14px;
 
-  text-decoration: none;
-
   color: inherit;
-
-  cursor: pointer;
 
   transition:
     transform 0.2s ease,
@@ -340,6 +342,8 @@
   justify-content: center;
 
   background: #f8fafc;
+
+  text-decoration: none;
 }
 
 .book-image img {
@@ -348,6 +352,13 @@
   height: 100%;
 
   object-fit: contain;
+
+  transition:
+    transform 0.2s ease;
+}
+
+.book-card:hover .book-image img {
+  transform: scale(1.03);
 }
 
 
@@ -377,15 +388,41 @@
   text-transform: capitalize;
 }
 
-.book-content h3 {
+
+/* =====================================
+   PRODUCT TITLE
+===================================== */
+
+.product-title {
+  display: -webkit-box;
+
+  overflow: hidden;
+
   margin: 0 0 9px;
 
   color: #111827;
 
   font-size: 16px;
 
+  font-weight: 600;
+
   line-height: 1.4;
+
+  text-decoration: none;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
 }
+
+.product-title:hover {
+  color: #4f46e5;
+}
+
+
+/* =====================================
+   DESCRIPTION
+===================================== */
 
 .book-description {
   display: -webkit-box;
@@ -407,7 +444,7 @@
 
 
 /* =====================================
-   PRICE
+   PRICE + RATING
 ===================================== */
 
 .book-bottom {
@@ -438,7 +475,55 @@
 
 
 /* =====================================
-   EMPTY
+   ADD TO CART
+===================================== */
+
+.add-cart-button {
+  width: 100%;
+
+  margin-top: 14px;
+
+  padding: 10px 14px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #4f46e5;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-cart-button:hover {
+  background: #4338ca;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 12px
+    rgba(79, 70, 229, 0.2);
+}
+
+.add-cart-button:active {
+  transform: translateY(0);
+
+  box-shadow: none;
+}
+
+
+/* =====================================
+   EMPTY STATE
 ===================================== */
 
 .empty-state {
@@ -469,6 +554,257 @@
   color: #6b7280;
 
   font-size: 13px;
+}
+
+
+/* =====================================
+   PAGINATION
+===================================== */
+
+.pagination {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 40px;
+}
+
+.pagination-button {
+  width: 38px;
+
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #4b5563;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  border-color: #6366f1;
+
+  color: #4f46e5;
+
+  background: #f5f3ff;
+}
+
+.pagination-button.active {
+  background: #4f46e5;
+
+  border-color: #4f46e5;
+
+  color: white;
+
+  box-shadow:
+    0 4px 10px
+    rgba(79, 70, 229, 0.2);
+}
+
+.pagination-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================
+   LOADING STATE
+===================================== */
+
+.loading-container {
+  min-height: 400px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  margin-top: 30px;
+}
+
+.loading-spinner {
+  width: 42px;
+
+  height: 42px;
+
+  margin-bottom: 18px;
+
+  border: 4px solid #e5e7eb;
+
+  border-top-color: #4f46e5;
+
+  border-radius: 50%;
+
+  animation:
+    spin 0.8s linear infinite;
+}
+
+.loading-container h3 {
+  margin: 0 0 7px;
+
+  color: #111827;
+
+  font-size: 17px;
+}
+
+.loading-container p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+@keyframes spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =====================================
+   ERROR STATE
+===================================== */
+
+.error-container {
+  min-height: 400px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 40px 20px;
+
+  margin-top: 30px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #fee2e2;
+
+  border-radius: 14px;
+}
+
+.error-icon {
+  width: 64px;
+
+  height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  background: #fef2f2;
+
+  font-size: 28px;
+}
+
+.error-container h3 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 19px;
+}
+
+.error-container p {
+  max-width: 450px;
+
+  margin: 0 0 22px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================
+   RETRY BUTTON
+===================================== */
+
+.retry-button {
+  padding: 11px 20px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #4f46e5;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.retry-button:hover {
+  background: #4338ca;
+
+  transform: translateY(-2px);
+}
+
+.retry-button:active {
+  transform: translateY(0);
 }
 
 
@@ -564,262 +900,4 @@
     gap: 8px;
   }
 
-}
-
-/* =====================================
-   PAGINATION
-===================================== */
-
-.pagination {
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 7px;
-
-  margin-top: 40px;
-}
-
-
-.pagination-button {
-  width: 38px;
-
-  height: 38px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border: 1px solid #e5e7eb;
-
-  border-radius: 8px;
-
-  background: white;
-
-  color: #4b5563;
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: all 0.2s ease;
-}
-
-
-.pagination-button:hover:not(:disabled) {
-  border-color: #6366f1;
-
-  color: #4f46e5;
-
-  background: #f5f3ff;
-}
-
-
-.pagination-button.active {
-  background: #4f46e5;
-
-  border-color: #4f46e5;
-
-  color: white;
-
-  box-shadow:
-    0 4px 10px
-    rgba(79, 70, 229, 0.2);
-}
-
-
-.pagination-button:disabled {
-  opacity: 0.4;
-
-  cursor: not-allowed;
-}
-
-/* =====================================
-   LOADING STATE
-===================================== */
-
-.loading-container {
-  min-height: 400px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
-
-  background: white;
-
-  border: 1px solid #e5e7eb;
-
-  border-radius: 14px;
-
-  margin-top: 30px;
-}
-
-.loading-spinner {
-  width: 42px;
-
-  height: 42px;
-
-  margin-bottom: 18px;
-
-  border: 4px solid #e5e7eb;
-
-  border-top-color: #4f46e5;
-
-  border-radius: 50%;
-
-  animation: spin 0.8s linear infinite;
-}
-
-.loading-container h3 {
-  margin: 0 0 7px;
-
-  color: #111827;
-
-  font-size: 17px;
-}
-
-.loading-container p {
-  margin: 0;
-
-  color: #6b7280;
-
-  font-size: 13px;
-}
-
-
-@keyframes spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-
-}
-
-/* =====================================
-   ERROR STATE
-===================================== */
-
-.error-container {
-  min-height: 400px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 40px 20px;
-
-  margin-top: 30px;
-
-  box-sizing: border-box;
-
-  text-align: center;
-
-  background: #ffffff;
-
-  border: 1px solid #fee2e2;
-
-  border-radius: 14px;
-
-}
-
-
-.error-icon {
-  width: 64px;
-
-  height: 64px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  margin-bottom: 18px;
-
-  border-radius: 50%;
-
-  background: #fef2f2;
-
-  font-size: 28px;
-}
-
-
-.error-container h3 {
-  margin: 0 0 8px;
-
-  color: #111827;
-
-  font-size: 19px;
-}
-
-
-.error-container p {
-  max-width: 450px;
-
-  margin: 0 0 22px;
-
-  color: #6b7280;
-
-  font-size: 13px;
-
-  line-height: 1.6;
-}
-
-
-/* =====================================
-   RETRY BUTTON
-===================================== */
-
-.retry-button {
-  padding: 11px 20px;
-
-  border: none;
-
-  border-radius: 8px;
-
-  background: #4f46e5;
-
-  color: white;
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-
-.retry-button:hover {
-  background: #4338ca;
-
-  transform: translateY(-2px);
-}
-
-
-.retry-button:active {
-  transform: translateY(0);
 }

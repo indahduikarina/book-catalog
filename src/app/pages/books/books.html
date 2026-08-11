@@ -9,15 +9,15 @@
     <div class="hero-content">
 
       <span class="hero-label">
-        BOOK COLLECTION
+        PRODUCT COLLECTION
       </span>
 
       <h1>
-        Explore Our Books
+        Explore Our Products
       </h1>
 
       <p>
-        Temukan berbagai buku menarik dan informasi lengkap
+        Temukan berbagai produk menarik dan informasi lengkap
         dalam satu katalog.
       </p>
 
@@ -32,7 +32,6 @@
 
   <main class="books-container">
 
-
     <!-- =========================
          LOADING
     ========================= -->
@@ -44,11 +43,11 @@
         <div class="loading-spinner"></div>
 
         <h3>
-          Loading Books...
+          Loading Products...
         </h3>
 
         <p>
-          Sedang mengambil data buku.
+          Sedang mengambil data produk.
         </p>
 
       </div>
@@ -69,11 +68,11 @@
         </div>
 
         <h3>
-          Gagal Memuat Buku
+          Gagal Memuat Produk
         </h3>
 
         <p>
-          Terjadi masalah saat mengambil data buku.
+          Terjadi masalah saat mengambil data produk.
           Silakan coba lagi.
         </p>
 
@@ -91,12 +90,14 @@
 
 
     <!-- =========================
-         BOOK CONTENT
+         PRODUCT CONTENT
     ========================= -->
 
     @if (!isLoading && !hasError) {
 
-      <!-- SEARCH + CATEGORY -->
+      <!-- =========================
+           SEARCH + CATEGORY
+      ========================= -->
 
       <div class="filter-bar">
 
@@ -110,7 +111,7 @@
 
           <input
             type="text"
-            placeholder="Cari buku berdasarkan judul..."
+            placeholder="Cari produk berdasarkan nama..."
             [(ngModel)]="searchText"
             (ngModelChange)="onSearchChange()"
           />
@@ -153,7 +154,9 @@
       </div>
 
 
-      <!-- SECTION HEADER -->
+      <!-- =========================
+           SECTION HEADER
+      ========================= -->
 
       <div class="section-header">
 
@@ -164,19 +167,21 @@
           </span>
 
           <h2>
-            Daftar Buku
+            Daftar Produk
           </h2>
 
         </div>
 
         <span class="book-count">
-          {{ filteredBooks.length }} buku
+          {{ filteredBooks.length }} produk
         </span>
 
       </div>
 
 
-      <!-- BOOK GRID -->
+      <!-- =========================
+           PRODUCT GRID
+      ========================= -->
 
       @if (filteredBooks.length > 0) {
 
@@ -187,35 +192,56 @@
             track book.id
           ) {
 
-            <a
-              class="book-card"
-              [routerLink]="['/books', book.id]"
-            >
+            <div class="book-card">
 
-              <div class="book-image">
+              <!-- =========================
+                   PRODUCT IMAGE
+              ========================= -->
+
+              <a
+                class="book-image"
+                [routerLink]="['/books', book.id]"
+              >
 
                 <img
                   [src]="book.thumbnail"
                   [alt]="book.title"
                 />
 
-              </div>
+              </a>
 
+
+              <!-- =========================
+                   PRODUCT CONTENT
+              ========================= -->
 
               <div class="book-content">
+
+                <!-- CATEGORY -->
 
                 <span class="book-category">
                   {{ book.category }}
                 </span>
 
-                <h3>
+
+                <!-- TITLE -->
+
+                <a
+                  class="product-title"
+                  [routerLink]="['/books', book.id]"
+                >
                   {{ book.title }}
-                </h3>
+                </a>
+
+
+                <!-- DESCRIPTION -->
 
                 <p class="book-description">
                   {{ book.description }}
                 </p>
 
+
+                <!-- PRICE + RATING -->
 
                 <div class="book-bottom">
 
@@ -229,9 +255,22 @@
 
                 </div>
 
+
+                <!-- =========================
+                     ADD TO CART
+                ========================= -->
+
+                <button
+                  type="button"
+                  class="add-cart-button"
+                  (click)="addToCart(book)"
+                >
+                  🛒 Add to Cart
+                </button>
+
               </div>
 
-            </a>
+            </div>
 
           }
 
@@ -246,6 +285,8 @@
 
           <div class="pagination">
 
+            <!-- PREVIOUS -->
+
             <button
               type="button"
               class="pagination-button"
@@ -255,6 +296,8 @@
               ←
             </button>
 
+
+            <!-- PAGE NUMBERS -->
 
             @for (
               page of pageNumbers;
@@ -273,6 +316,8 @@
             }
 
 
+            <!-- NEXT -->
+
             <button
               type="button"
               class="pagination-button"
@@ -290,7 +335,7 @@
 
 
       <!-- =========================
-           EMPTY SEARCH RESULT
+           EMPTY RESULT
       ========================= -->
 
       @if (filteredBooks.length === 0) {
@@ -298,11 +343,11 @@
         <div class="empty-state">
 
           <div class="empty-icon">
-            📚
+            🛍️
           </div>
 
           <h3>
-            Buku Tidak Ditemukan
+            Produk Tidak Ditemukan
           </h3>
 
           <p>

@@ -2,19 +2,19 @@
 
   <div class="navbar-container">
 
-    <!-- LOGO -->
+    <!-- BRAND -->
 
     <a
       routerLink="/"
-      class="logo"
+      class="brand"
     >
-      Book<span>Catalog</span>
+      ProductCatalog
     </a>
 
 
-    <!-- MENU -->
+    <!-- NAVIGATION -->
 
-    <div class="nav-menu">
+    <div class="nav-links">
 
       <!-- HOME -->
 
@@ -22,20 +22,45 @@
         routerLink="/"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="nav-link"
       >
         Home
       </a>
 
 
-      <!-- BOOKS -->
+      <!-- PRODUCTS -->
 
       <a
         routerLink="/books"
         routerLinkActive="active"
-        class="nav-link"
       >
-        Books
+        Products
+      </a>
+
+
+      <!-- CART -->
+
+      <a
+        routerLink="/cart"
+        routerLinkActive="active"
+        class="cart-link"
+      >
+
+        <span class="cart-icon">
+          🛒
+        </span>
+
+        <span>
+          Cart
+        </span>
+
+        @if (cartCount > 0) {
+
+          <span class="cart-badge">
+            {{ cartCount }}
+          </span>
+
+        }
+
       </a>
 
     </div>

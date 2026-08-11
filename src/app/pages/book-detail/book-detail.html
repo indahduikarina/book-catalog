@@ -1,53 +1,141 @@
 <div class="detail-page">
 
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
   <div class="detail-container">
 
     <a
       routerLink="/books"
-      class="back-button"
+      class="back-link"
     >
-      ← Kembali ke Books
+      ← Kembali ke Products
     </a>
 
-    @if (loading) {
 
-      <div class="loading">
-        <div class="spinner"></div>
-        <p>Memuat detail buku...</p>
+    <!-- =========================
+         LOADING
+    ========================= -->
+
+    @if (isLoading) {
+
+      <div class="loading-container">
+
+        <div class="loading-spinner"></div>
+
+        <h3>
+          Loading Product...
+        </h3>
+
+        <p>
+          Sedang mengambil informasi produk.
+        </p>
+
       </div>
 
-    } @else if (book) {
+    }
 
-      <div class="detail-card">
 
-        <div class="detail-image">
+    <!-- =========================
+         ERROR
+    ========================= -->
+
+    @if (!isLoading && hasError) {
+
+      <div class="error-container">
+
+        <div class="error-icon">
+          ⚠️
+        </div>
+
+        <h3>
+          Produk Tidak Ditemukan
+        </h3>
+
+        <p>
+          Produk yang kamu cari tidak tersedia
+          atau terjadi kesalahan saat mengambil data.
+        </p>
+
+        <a
+          routerLink="/books"
+          class="back-button"
+        >
+          ← Kembali ke Products
+        </a>
+
+      </div>
+
+    }
+
+
+    <!-- =========================
+         PRODUCT DETAIL
+    ========================= -->
+
+    @if (!isLoading && !hasError && book) {
+
+      <div class="product-detail-card">
+
+
+        <!-- =========================
+             PRODUCT IMAGE
+        ========================= -->
+
+        <div class="product-image-container">
 
           <img
             [src]="book.thumbnail"
             [alt]="book.title"
+            class="product-image"
           />
 
         </div>
 
-        <div class="detail-info">
 
-          <span class="category">
+        <!-- =========================
+             PRODUCT INFORMATION
+        ========================= -->
+
+        <div class="product-information">
+
+
+          <!-- CATEGORY -->
+
+          <span class="product-category">
             {{ book.category }}
           </span>
+
+
+          <!-- TITLE -->
 
           <h1>
             {{ book.title }}
           </h1>
 
-          <p class="description">
+
+          <!-- DESCRIPTION -->
+
+          <p class="product-description">
             {{ book.description }}
           </p>
 
-          <div class="info-grid">
+
+          <!-- =========================
+               PRODUCT INFO
+          ========================= -->
+
+          <div class="product-info-grid">
+
+
+            <!-- PRICE -->
 
             <div class="info-box">
 
-              <span>Harga</span>
+              <span class="info-label">
+                Harga
+              </span>
 
               <strong class="price">
                 ${{ book.price }}
@@ -55,21 +143,31 @@
 
             </div>
 
+
+            <!-- RATING -->
+
             <div class="info-box">
 
-              <span>Rating</span>
+              <span class="info-label">
+                Rating
+              </span>
 
-              <strong>
+              <strong class="rating">
                 ⭐ {{ book.rating }}
               </strong>
 
             </div>
 
+
+            <!-- STOCK -->
+
             <div class="info-box">
 
-              <span>Stok</span>
+              <span class="info-label">
+                Stok
+              </span>
 
-              <strong>
+              <strong class="stock">
                 {{ book.stock }}
               </strong>
 
@@ -77,42 +175,71 @@
 
           </div>
 
+
+          <!-- =========================
+               DISCOUNT
+          ========================= -->
+
           <div class="discount">
 
-            Diskon hingga
-            {{ book.discountPercentage }}%
+            Diskon hingga 10.48%
 
           </div>
 
-          <a
-            routerLink="/books"
-            class="button"
-          >
-            Lihat Semua Buku
-          </a>
+
+          <!-- =========================
+               ACTIONS
+          ========================= -->
+
+          <div class="product-actions">
+
+
+            <!-- ADD TO CART -->
+
+            <button
+              type="button"
+              class="add-cart-button"
+              [class.added]="addedToCart"
+              (click)="addToCart()"
+            >
+
+              @if (addedToCart) {
+
+                ✓ Berhasil Ditambahkan
+
+              } @else {
+
+                🛒 Tambah ke Keranjang
+
+              }
+
+            </button>
+
+
+            <!-- VIEW CART -->
+
+            <a
+              routerLink="/cart"
+              class="cart-button"
+            >
+              🛒 Lihat Keranjang
+            </a>
+
+
+            <!-- VIEW ALL PRODUCTS -->
+
+            <a
+              routerLink="/books"
+              class="products-button"
+            >
+              Lihat Semua Produk
+            </a>
+
+
+          </div>
+
 
         </div>
-
-      </div>
-
-    } @else {
-
-      <div class="not-found">
-
-        <h2>
-          Buku tidak ditemukan
-        </h2>
-
-        <p>
-          Data buku yang kamu cari tidak tersedia.
-        </p>
-
-        <a
-          routerLink="/books"
-          class="button"
-        >
-          Kembali ke Books
-        </a>
 
       </div>
 

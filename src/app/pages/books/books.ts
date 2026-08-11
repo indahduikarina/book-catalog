@@ -3,10 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 import { BookService } from '../../services/book';
+import { CartService } from '../../services/cart';
 import { Book } from '../../models/book';
+
 
 @Component({
   selector: 'app-books',
+
   standalone: true,
 
   imports: [
@@ -15,8 +18,11 @@ import { Book } from '../../models/book';
   ],
 
   templateUrl: './books.html',
+
   styleUrl: './books.css'
 })
+
+
 export class Books implements OnInit {
 
   // =========================
@@ -55,8 +61,13 @@ export class Books implements OnInit {
   hasError: boolean = false;
 
 
+  // =========================
+  // CONSTRUCTOR
+  // =========================
+
   constructor(
-    private bookService: BookService
+    private bookService: BookService,
+    private cartService: CartService
   ) {}
 
 
@@ -77,7 +88,6 @@ export class Books implements OnInit {
 
   loadBooks(): void {
 
-    // Reset state
     this.isLoading = true;
 
     this.hasError = false;
@@ -236,7 +246,9 @@ export class Books implements OnInit {
       page < 1 ||
       page > this.totalPages
     ) {
+
       return;
+
     }
 
 
@@ -244,8 +256,11 @@ export class Books implements OnInit {
 
 
     window.scrollTo({
+
       top: 0,
+
       behavior: 'smooth'
+
     });
 
   }
@@ -269,6 +284,22 @@ export class Books implements OnInit {
   onCategoryChange(): void {
 
     this.currentPage = 1;
+
+  }
+
+
+  // =========================
+  // ADD TO CART
+  // =========================
+
+  addToCart(book: Book): void {
+
+    this.cartService.addToCart(book);
+
+
+    alert(
+      `${book.title} berhasil ditambahkan ke cart!`
+    );
 
   }
 

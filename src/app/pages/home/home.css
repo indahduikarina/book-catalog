@@ -1,43 +1,35 @@
-:host {
-  display: block;
-}
-
 .home-page {
   min-height: 100vh;
-  background: #f8fafc;
-  color: #111827;
+  background: #f8f9fc;
 }
 
 
-/* =====================================
+/* =========================
    HERO
-===================================== */
+========================= */
 
 .hero {
-  min-height: 480px;
+  min-height: 420px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 70px 30px;
-  box-sizing: border-box;
+  padding: 70px 24px;
 
+  background: linear-gradient(
+    135deg,
+    #4f46e5 0%,
+    #7c3aed 100%
+  );
+
+  color: #ffffff;
   text-align: center;
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #4f46e5 0%,
-      #7c3aed 100%
-    );
 }
 
 .hero-content {
   width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
+  max-width: 760px;
 }
 
 .hero-label {
@@ -45,52 +37,49 @@
 
   margin-bottom: 18px;
 
-  color: #ede9fe;
-
   font-size: 12px;
   font-weight: 700;
-
   letter-spacing: 2px;
+
+  opacity: 0.9;
 }
 
 .hero h1 {
   margin: 0;
 
-  font-size: 54px;
+  font-size: 48px;
   line-height: 1.15;
-
   font-weight: 700;
-
   letter-spacing: -1px;
 }
 
 .hero h1 span {
+  display: inline;
   color: #ddd6fe;
 }
 
 .hero p {
-  max-width: 680px;
+  max-width: 650px;
 
   margin: 20px auto 0;
 
-  color: #f5f3ff;
-
   font-size: 16px;
   line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.9);
 }
 
 
-/* =====================================
-   BUTTONS
-===================================== */
+/* =========================
+   HERO BUTTONS
+========================= */
 
 .hero-actions {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
   margin-top: 30px;
 }
@@ -98,198 +87,177 @@
 .primary-button,
 .secondary-button {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
-  min-width: 130px;
-
-  padding: 12px 20px;
+  min-height: 42px;
+  padding: 0 20px;
 
   border-radius: 8px;
 
-  text-decoration: none;
-
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
+
+  text-decoration: none;
 
   transition: all 0.2s ease;
 }
 
 .primary-button {
-  background: white;
-
+  background: #ffffff;
   color: #4f46e5;
-
-  box-shadow:
-    0 5px 15px rgba(0, 0, 0, 0.12);
 }
 
 .primary-button:hover {
-  transform: translateY(-2px);
+  background: #f3f4f6;
+  transform: translateY(-1px);
 }
 
 .secondary-button {
-  color: white;
-
-  border: 1px solid
-    rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  background: transparent;
 }
 
 .secondary-button:hover {
-  background:
-    rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 
-/* =====================================
-   FEATURED BOOKS
-===================================== */
+/* =========================
+   FEATURED SECTION
+========================= */
 
 .featured-section {
-  width: 100%;
-
-  max-width: 1180px;
+  max-width: 1200px;
 
   margin: 0 auto;
 
-  padding: 70px 30px;
-
-  box-sizing: border-box;
+  padding: 70px 24px;
 }
-
-
-/* =====================================
-   SECTION HEADER
-===================================== */
 
 .section-header {
   display: flex;
 
-  justify-content: space-between;
   align-items: flex-end;
+  justify-content: space-between;
 
-  margin-bottom: 25px;
+  gap: 30px;
+
+  margin-bottom: 30px;
 }
 
 .section-label {
   display: block;
 
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 
-  color: #6366f1;
+  color: #4f46e5;
 
   font-size: 11px;
   font-weight: 700;
 
-  letter-spacing: 1.7px;
+  letter-spacing: 2px;
 }
 
 .section-header h2 {
-  margin: 0 0 7px;
+  margin: 0;
 
   color: #111827;
 
   font-size: 30px;
+  line-height: 1.2;
   font-weight: 700;
 }
 
 .section-header p {
-  margin: 0;
+  margin: 9px 0 0;
 
   color: #6b7280;
 
   font-size: 14px;
+  line-height: 1.6;
 }
 
 .view-all {
+  flex-shrink: 0;
+
   color: #4f46e5;
+
+  font-size: 14px;
+  font-weight: 600;
 
   text-decoration: none;
 
-  font-size: 13px;
-  font-weight: 600;
-
-  white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
 .view-all:hover {
-  text-decoration: underline;
+  color: #3730a3;
 }
 
 
-/* =====================================
-   BOOK GRID
-===================================== */
+/* =========================
+   PRODUCT GRID
+========================= */
 
 .book-grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, 1fr);
 
   gap: 20px;
 }
 
 
-/* =====================================
-   BOOK CARD
-===================================== */
+/* =========================
+   PRODUCT CARD
+========================= */
 
 .book-card {
-  display: flex;
-
-  flex-direction: column;
-
-  min-width: 0;
+  display: block;
 
   overflow: hidden;
 
-  background: white;
+  background: #ffffff;
 
-  border: 1px solid #e5e7eb;
-
-  border-radius: 14px;
-
-  color: inherit;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
 
   text-decoration: none;
-
-  cursor: pointer;
+  color: inherit;
 
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .book-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
+
+  border-color: #ddd6fe;
 
   box-shadow:
-    0 14px 30px
-    rgba(0, 0, 0, 0.08);
+    0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 
-/* =====================================
-   IMAGE
-===================================== */
+/* =========================
+   PRODUCT IMAGE
+========================= */
 
 .image-container {
-  width: 100%;
+  height: 230px;
 
-  height: 235px;
+  background: #f7f7f8;
 
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  padding: 18px;
-
-  box-sizing: border-box;
-
-  background: #f8fafc;
+  overflow: hidden;
 }
 
 .image-container img {
@@ -298,34 +266,30 @@
 
   object-fit: contain;
 
-  transition:
-    transform 0.25s ease;
+  padding: 20px;
+
+  transition: transform 0.25s ease;
 }
 
-.book-card:hover
-.image-container img {
+.book-card:hover .image-container img {
   transform: scale(1.04);
 }
 
 
-/* =====================================
-   BOOK INFO
-===================================== */
+/* =========================
+   PRODUCT INFO
+========================= */
 
 .book-info {
-  display: flex;
-
-  flex-direction: column;
-
-  flex: 1;
-
-  padding: 17px;
+  padding: 18px;
 }
 
 .category {
+  display: block;
+
   margin-bottom: 7px;
 
-  color: #6366f1;
+  color: #4f46e5;
 
   font-size: 11px;
   font-weight: 600;
@@ -334,40 +298,40 @@
 }
 
 .book-info h3 {
-  min-height: 44px;
-
-  margin: 0 0 9px;
+  margin: 0;
 
   color: #111827;
 
-  font-size: 16px;
-
+  font-size: 15px;
   line-height: 1.4;
+  font-weight: 600;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
 }
 
 .description {
-  display: -webkit-box;
-
-  min-height: 40px;
-
-  overflow: hidden;
-
-  margin: 0 0 18px;
+  margin: 8px 0 0;
 
   color: #6b7280;
 
   font-size: 12px;
-
   line-height: 1.6;
 
+  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+
+  overflow: hidden;
 }
 
 
-/* =====================================
-   PRICE + RATING
-===================================== */
+/* =========================
+   PRICE & RATING
+========================= */
 
 .book-bottom {
   display: flex;
@@ -375,11 +339,13 @@
   align-items: center;
   justify-content: space-between;
 
-  margin-top: auto;
+  gap: 10px;
 
-  padding-top: 13px;
+  margin-top: 16px;
 
-  border-top: 1px solid #f1f3f6;
+  padding-top: 14px;
+
+  border-top: 1px solid #eeeeee;
 }
 
 .price {
@@ -390,31 +356,37 @@
 }
 
 .rating {
-  color: #4b5563;
+  color: #6b7280;
 
   font-size: 12px;
 }
 
 
-/* =====================================
+/* =========================
    FOOTER
-===================================== */
+========================= */
 
 .footer {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 40px 24px;
+
+  border-top: 1px solid #e5e7eb;
+
   display: flex;
 
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  padding: 38px 30px;
-
-  background: #111827;
-
-  color: white;
+  gap: 20px;
 }
 
 .footer h3 {
   margin: 0 0 6px;
+
+  color: #111827;
 
   font-size: 17px;
 }
@@ -422,7 +394,7 @@
 .footer p {
   margin: 0;
 
-  color: #9ca3af;
+  color: #6b7280;
 
   font-size: 13px;
 }
@@ -434,38 +406,57 @@
 }
 
 
-/* =====================================
+/* =========================
    TABLET
-===================================== */
+========================= */
 
 @media (max-width: 1000px) {
 
   .book-grid {
-    grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 42px;
   }
 
 }
 
 
-/* =====================================
+/* =========================
    MOBILE
-===================================== */
+========================= */
 
-@media (max-width: 700px) {
+@media (max-width: 650px) {
 
   .hero {
-    min-height: 430px;
+    min-height: 380px;
 
     padding: 60px 20px;
   }
 
   .hero h1 {
-    font-size: 40px;
+    font-size: 34px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+    max-width: 260px;
   }
 
   .featured-section {
-    padding: 55px 20px;
+    padding: 50px 16px;
   }
 
   .section-header {
@@ -473,49 +464,11 @@
 
     flex-direction: column;
 
-    gap: 12px;
-  }
-
-  .book-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
     gap: 15px;
   }
 
-  .image-container {
-    height: 210px;
-  }
-
-  .footer {
-    flex-direction: column;
-
-    gap: 18px;
-
-    text-align: center;
-  }
-
-}
-
-
-/* =====================================
-   SMALL MOBILE
-===================================== */
-
-@media (max-width: 480px) {
-
-  .hero h1 {
-    font-size: 33px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-  }
-
-  .primary-button,
-  .secondary-button {
-    width: 100%;
-    max-width: 280px;
+  .section-header h2 {
+    font-size: 26px;
   }
 
   .book-grid {
@@ -523,7 +476,15 @@
   }
 
   .image-container {
-    height: 260px;
+    height: 250px;
+  }
+
+  .footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding: 35px 16px;
   }
 
 }

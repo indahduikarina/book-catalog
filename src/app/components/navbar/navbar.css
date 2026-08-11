@@ -1,10 +1,10 @@
-/* =========================================
+/* =========================
    NAVBAR
-========================================= */
+========================= */
 
 .navbar {
   width: 100%;
-  height: 70px;
+  height: 72px;
 
   background: #ffffff;
 
@@ -17,16 +17,18 @@
 }
 
 
-/* CONTAINER */
+/* =========================
+   CONTAINER
+========================= */
 
 .navbar-container {
-  max-width: 1180px;
+  max-width: 1200px;
 
   height: 100%;
 
   margin: 0 auto;
 
-  padding: 0 30px;
+  padding: 0 24px;
 
   display: flex;
 
@@ -36,104 +38,172 @@
 }
 
 
-/* =========================================
-   LOGO
-========================================= */
+/* =========================
+   BRAND
+========================= */
 
-.logo {
-  text-decoration: none;
-
+.brand {
   color: #4f46e5;
 
-  font-size: 22px;
+  font-size: 20px;
 
   font-weight: 700;
 
-  letter-spacing: -0.5px;
+  text-decoration: none;
+
+  transition: 0.2s ease;
 }
 
-.logo span {
-  color: #7c3aed;
+.brand:hover {
+  color: #4338ca;
 }
 
 
-/* =========================================
-   MENU
-========================================= */
+/* =========================
+   NAV LINKS
+========================= */
 
-.nav-menu {
+.nav-links {
   display: flex;
 
   align-items: center;
 
-  gap: 8px;
+  gap: 12px;
 }
 
 
-/* LINK */
+/* =========================
+   NAV LINK
+========================= */
 
-.nav-link {
-  text-decoration: none;
+.nav-links a {
+  position: relative;
 
-  color: #555555;
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 10px 16px;
+
+  border-radius: 8px;
+
+  color: #374151;
 
   font-size: 14px;
 
   font-weight: 500;
 
-  padding: 10px 18px;
-
-  border-radius: 9px;
+  text-decoration: none;
 
   transition: all 0.2s ease;
 }
 
 
-/* HOVER */
+/* =========================
+   HOVER
+========================= */
 
-.nav-link:hover {
+.nav-links a:hover {
   color: #4f46e5;
 
   background: #f5f3ff;
 }
 
 
-/* ACTIVE */
+/* =========================
+   ACTIVE
+========================= */
 
-.nav-link.active {
+.nav-links a.active {
   color: #ffffff;
 
   background: #4f46e5;
+}
 
-  box-shadow:
-    0 4px 12px rgba(79, 70, 229, 0.20);
+.nav-links a.active:hover {
+  color: #ffffff;
+
+  background: #4338ca;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* =========================
+   CART
+========================= */
+
+.cart-link {
+  position: relative;
+}
+
+
+/* =========================
+   CART ICON
+========================= */
+
+.cart-icon {
+  font-size: 16px;
+
+  line-height: 1;
+}
+
+
+/* =========================
+   CART BADGE
+========================= */
+
+.cart-badge {
+  min-width: 20px;
+
+  height: 20px;
+
+  padding: 0 6px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 999px;
+
+  background: #ef4444;
+
+  color: #ffffff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 600px) {
 
   .navbar {
-    height: 62px;
+    height: 64px;
   }
 
   .navbar-container {
-    padding: 0 18px;
+    padding: 0 16px;
   }
 
-  .logo {
-    font-size: 19px;
+  .brand {
+    font-size: 17px;
   }
 
-  .nav-menu {
-    gap: 2px;
+  .nav-links {
+    gap: 4px;
   }
 
-  .nav-link {
-    padding: 8px 11px;
+  .nav-links a {
+    padding: 8px 10px;
 
     font-size: 13px;
   }
