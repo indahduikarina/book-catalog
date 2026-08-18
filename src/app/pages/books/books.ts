@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink
+} from '@angular/router';
 
 import { BookService } from '../../services/book';
 import { CartService } from '../../services/cart';
 import { Book } from '../../models/book';
-
 
 @Component({
   selector: 'app-books',
@@ -21,8 +24,6 @@ import { Book } from '../../models/book';
 
   styleUrl: './books.css'
 })
-
-
 export class Books implements OnInit {
 
   // =========================
@@ -67,7 +68,9 @@ export class Books implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private cartService: CartService
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
 
@@ -76,6 +79,31 @@ export class Books implements OnInit {
   // =========================
 
   ngOnInit(): void {
+
+    // =========================
+    // BACA QUERY PARAMS
+    // =========================
+
+    this.route.queryParamMap.subscribe(params => {
+
+      this.searchText =
+        params.get('search') ?? '';
+
+      this.selectedCategory =
+        params.get('category') ?? 'all';
+
+      const page =
+        Number(params.get('page'));
+
+      this.currentPage =
+        page > 0 ? page : 1;
+
+    });
+
+
+    // =========================
+    // LOAD BOOKS
+    // =========================
 
     this.loadBooks();
 
@@ -104,7 +132,10 @@ export class Books implements OnInit {
         this.books = data;
 
 
-        // Ambil kategori unik
+        // =====================
+        // AMBIL KATEGORI UNIK
+        // =====================
+
         this.categories = [
           ...new Set(
             this.books.map(
@@ -156,7 +187,7 @@ export class Books implements OnInit {
 
 
   // =========================
-  // FILTER
+  // FILTERED BOOKS
   // =========================
 
   get filteredBooks(): Book[] {
@@ -212,6 +243,10 @@ export class Books implements OnInit {
   }
 
 
+  // =========================
+  // TOTAL PAGES
+  // =========================
+
   get totalPages(): number {
 
     return Math.ceil(
@@ -221,6 +256,10 @@ export class Books implements OnInit {
 
   }
 
+
+  // =========================
+  // PAGE NUMBERS
+  // =========================
 
   get pageNumbers(): number[] {
 
@@ -232,6 +271,85 @@ export class Books implements OnInit {
       (_, index) =>
         index + 1
     );
+
+  }
+
+
+  // =========================
+  // UPDATE QUERY PARAMS
+  // =========================
+
+  updateQueryParams(): void {
+
+    this.router.navigate(
+      [],
+
+      {
+        relativeTo: this.route,
+
+        queryParams: {
+
+          // SEARCH
+          search:
+            this.searchText.trim()
+              ? this.searchText.trim()
+              : null,
+
+
+          // CATEGORY
+          category:
+            this.selectedCategory !== 'all'
+              ? this.selectedCategory
+              : null,
+
+
+          // PAGE
+          page:
+            this.currentPage > 1
+              ? this.currentPage
+              : null
+
+        },
+
+        // Tidak membuat history baru
+        // setiap kali mengetik
+        replaceUrl: true
+      }
+    );
+
+  }
+
+
+  // =========================
+  // SEARCH CHANGE
+  // =========================
+
+  onSearchChange(): void {
+
+    // Kembali ke halaman pertama
+    // ketika search berubah
+
+    this.currentPage = 1;
+
+
+    this.updateQueryParams();
+
+  }
+
+
+  // =========================
+  // CATEGORY CHANGE
+  // =========================
+
+  onCategoryChange(): void {
+
+    // Kembali ke halaman pertama
+    // ketika kategori berubah
+
+    this.currentPage = 1;
+
+
+    this.updateQueryParams();
 
   }
 
@@ -255,6 +373,11 @@ export class Books implements OnInit {
     this.currentPage = page;
 
 
+    this.updateQueryParams();
+
+
+    // Scroll ke atas
+
     window.scrollTo({
 
       top: 0,
@@ -262,28 +385,6 @@ export class Books implements OnInit {
       behavior: 'smooth'
 
     });
-
-  }
-
-
-  // =========================
-  // SEARCH CHANGE
-  // =========================
-
-  onSearchChange(): void {
-
-    this.currentPage = 1;
-
-  }
-
-
-  // =========================
-  // CATEGORY CHANGE
-  // =========================
-
-  onCategoryChange(): void {
-
-    this.currentPage = 1;
 
   }
 
